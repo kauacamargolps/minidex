@@ -171,6 +171,12 @@ app.get("/pokemon/:id", async (req, res) => {
     });
 });
 
+console.log("SUPABASE_URL existe?", !!process.env.SUPABASE_URL);
+console.log("SUPABASE_SECRET_KEY existe?", !!process.env.SUPABASE_SECRET_KEY);
+
+app.listen(PORTA, () => {
+    console.log(`Servidor rodando em http://localhost:${PORTA}`);
+});
 app.listen(PORTA, () => {
     console.log(`Servidor rodando em http://localhost:${PORTA}`);
 });
