@@ -15,18 +15,39 @@ app.get("/", (req, res) => {
 });
 
 app.get("/teste", async (req, res) => {
-    const { data, error } = await supabase
-        .from("pokemon")
-        .select("*")
-        .limit(1);
+    try {
+        console.log("Testando conexão com Supabase...");
 
-    if (error) {
-        return res.status(500).json({
-            erro: error.message
+        const { data, error } = await supabase
+            .from("pokemon")
+            .select("id, nome")
+            .limit(1);
+
+        console.log("Resultado:", data);
+        console.log("Erro:", error);
+
+        if (error) {
+            return res.status(500).json({
+                sucesso: false,
+                erro: error.message,
+                detalhes: error
+            });
+        }
+
+        res.json({
+            sucesso: true,
+            dados: data
+        });
+
+    } catch (erro) {
+        console.log("ERRO CAPTURADO:", erro);
+
+        res.status(500).json({
+            sucesso: false,
+            tipo: erro.name,
+            erro: erro.message
         });
     }
-
-    res.json(data);
 });
 
 const PORTA = process.env.PORT || 3000;
