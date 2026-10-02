@@ -29,7 +29,7 @@ app.get("/teste", async (req, res) => {
     res.json(data);
 });
 
-const PORTA = 3000;
+const PORTA = process.env.PORT || 3000;
 
 app.get("/pokemon", async (req, res) => {
     const { data, error } = await supabase
