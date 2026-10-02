@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,6 +17,7 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
 
 <body>
@@ -58,20 +61,126 @@
 
     <main>
 
-        <section
-            class="filtros"
-            id="filtrosTipos"
-        >
+        <!-- ================================= -->
+        <!-- FILTROS -->
+        <!-- ================================= -->
 
-            <button
-                class="filtro ativo"
-                data-tipo="todos"
-            >
-                Todos
-            </button>
+        <section class="filtros-container">
+
+            <!-- TIPOS -->
+
+            <div class="grupo-filtro">
+
+                <h2>Tipos</h2>
+
+                <section
+                    class="filtros"
+                    id="filtrosTipos"
+                >
+
+                    <button
+                        class="filtro ativo"
+                        data-tipo="todos"
+                    >
+                        Todos
+                    </button>
+
+                </section>
+
+            </div>
+
+
+            <!-- GERAÇÕES -->
+
+            <div class="grupo-filtro">
+
+                <h2>Geração</h2>
+
+                <section
+                    class="filtros"
+                    id="filtrosGeracoes"
+                >
+
+                    <button
+                        class="filtro-geracao ativo"
+                        data-geracao="todas"
+                    >
+                        Todas
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="1"
+                    >
+                        Gen I
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="2"
+                    >
+                        Gen II
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="3"
+                    >
+                        Gen III
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="4"
+                    >
+                        Gen IV
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="5"
+                    >
+                        Gen V
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="6"
+                    >
+                        Gen VI
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="7"
+                    >
+                        Gen VII
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="8"
+                    >
+                        Gen VIII
+                    </button>
+
+                    <button
+                        class="filtro-geracao"
+                        data-geracao="9"
+                    >
+                        Gen IX
+                    </button>
+
+                </section>
+
+            </div>
 
         </section>
 
+
+        <!-- ================================= -->
+        <!-- POKÉMON -->
+        <!-- ================================= -->
 
         <section
             class="grid-pokemon"

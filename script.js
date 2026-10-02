@@ -16,7 +16,10 @@ const conteudoModal =
     document.getElementById("conteudoModal");
 
 let pokemons = [];
-let filtroAtual = "todos";
+
+// Filtros atuais
+let filtroTipoAtual = "todos";
+let filtroGeracaoAtual = "todas";
 
 
 // ==========================================
@@ -31,14 +34,18 @@ async function carregarPokemon() {
             await fetch(`${API}/pokemon`);
 
         if (!resposta.ok) {
+
             throw new Error(
                 "Erro ao buscar Pokémon"
             );
+
         }
 
         pokemons = await resposta.json();
 
         criarFiltros();
+
+        configurarFiltrosGeracao();
 
         renderizarPokemon();
 
@@ -51,7 +58,9 @@ async function carregarPokemon() {
                 Não foi possível carregar os Pokémon.
             </p>
         `;
+
     }
+
 }
 
 
@@ -66,25 +75,56 @@ function renderizarPokemon() {
             .toLowerCase()
             .trim();
 
+
     const filtrados =
         pokemons.filter(pokemon => {
+
+            // ==============================
+            // BUSCA
+            // ==============================
 
             const correspondeBusca =
                 pokemon.nome
                     .toLowerCase()
                     .includes(busca);
 
+
+            // ==============================
+            // TIPO
+            // ==============================
+
             const correspondeTipo =
-                filtroAtual === "todos" ||
-                pokemon.tipo_1 === filtroAtual ||
-                pokemon.tipo_2 === filtroAtual;
+                filtroTipoAtual === "todos" ||
+                pokemon.tipo_1 === filtroTipoAtual ||
+                pokemon.tipo_2 === filtroTipoAtual;
+
+
+            // ==============================
+            // GERAÇÃO
+            // ==============================
+
+            const correspondeGeracao =
+                filtroGeracaoAtual === "todas" ||
+                obterGeracao(pokemon.id) ===
+                    Number(filtroGeracaoAtual);
+
+
+            // ==============================
+            // RESULTADO FINAL
+            // ==============================
 
             return (
                 correspondeBusca &&
-                correspondeTipo
+                correspondeTipo &&
+                correspondeGeracao
             );
+
         });
 
+
+    // ======================================
+    // NENHUM RESULTADO
+    // ======================================
 
     if (filtrados.length === 0) {
 
@@ -95,54 +135,69 @@ function renderizarPokemon() {
         `;
 
         return;
+
     }
 
 
+    // ======================================
+    // CRIAR CARDS
+    // ======================================
+
     gridPokemon.innerHTML =
-        filtrados.map(pokemon => {
+        filtrados
+            .map(pokemon => {
 
-            const numero =
-                String(pokemon.id)
-                    .padStart(3, "0");
+                const numero =
+                    String(pokemon.id)
+                        .padStart(3, "0");
 
-            return `
-                <article
-                    class="card-pokemon"
-                    data-id="${pokemon.id}"
-                >
 
-                    <span class="numero">
-                        #${numero}
-                    </span>
-
-                    <img
-                        src="${pokemon.sprite}"
-                        alt="${pokemon.nome}"
-                        loading="lazy"
+                return `
+                    <article
+                        class="card-pokemon"
+                        data-id="${pokemon.id}"
                     >
 
-                    <h2>
-                        ${formatarNome(pokemon.nome)}
-                    </h2>
+                        <span class="numero">
+                            #${numero}
+                        </span>
 
-                    <div class="tipos">
-                        ${criarTipo(
-                            pokemon.tipo_1
-                        )}
+                        <img
+                            src="${pokemon.sprite}"
+                            alt="${pokemon.nome}"
+                            loading="lazy"
+                        >
 
-                        ${pokemon.tipo_2
-                            ? criarTipo(
+                        <h2>
+                            ${formatarNome(pokemon.nome)}
+                        </h2>
+
+                        <div class="tipos">
+
+                            ${criarTipo(
+                                pokemon.tipo_1
+                            )}
+
+                            ${
                                 pokemon.tipo_2
-                            )
-                            : ""
-                        }
-                    </div>
+                                    ? criarTipo(
+                                        pokemon.tipo_2
+                                    )
+                                    : ""
+                            }
 
-                </article>
-            `;
+                        </div>
 
-        }).join("");
+                    </article>
+                `;
 
+            })
+            .join("");
+
+
+    // ======================================
+    // CLIQUE NOS CARDS
+    // ======================================
 
     document
         .querySelectorAll(".card-pokemon")
@@ -160,6 +215,72 @@ function renderizarPokemon() {
             );
 
         });
+
+}
+
+
+// ==========================================
+// OBTER GERAÇÃO PELO ID
+// ==========================================
+
+function obterGeracao(id) {
+
+    if (id >= 1 && id <= 151) {
+
+        return 1;
+
+    }
+
+    if (id >= 152 && id <= 251) {
+
+        return 2;
+
+    }
+
+    if (id >= 252 && id <= 386) {
+
+        return 3;
+
+    }
+
+    if (id >= 387 && id <= 493) {
+
+        return 4;
+
+    }
+
+    if (id >= 494 && id <= 649) {
+
+        return 5;
+
+    }
+
+    if (id >= 650 && id <= 721) {
+
+        return 6;
+
+    }
+
+    if (id >= 722 && id <= 809) {
+
+        return 7;
+
+    }
+
+    if (id >= 810 && id <= 905) {
+
+        return 8;
+
+    }
+
+    if (id >= 906 && id <= 1025) {
+
+        return 9;
+
+    }
+
+    return 0;
+
 }
 
 
@@ -174,6 +295,7 @@ function criarTipo(tipo) {
             ${formatarNome(tipo)}
         </span>
     `;
+
 }
 
 
@@ -188,25 +310,35 @@ function formatarNome(nome) {
         .replace(/\b\w/g, letra =>
             letra.toUpperCase()
         );
+
 }
 
 
 // ==========================================
-// FILTROS
+// FILTROS DE TIPO
 // ==========================================
 
 function criarFiltros() {
 
     const tipos = new Set();
 
+
+    // ======================================
+    // PEGAR TODOS OS TIPOS
+    // ======================================
+
     pokemons.forEach(pokemon => {
 
         if (pokemon.tipo_1) {
+
             tipos.add(pokemon.tipo_1);
+
         }
 
         if (pokemon.tipo_2) {
+
             tipos.add(pokemon.tipo_2);
+
         }
 
     });
@@ -218,31 +350,47 @@ function criarFiltros() {
         );
 
 
+    // ======================================
+    // BOTÃO TODOS
+    // ======================================
+
     container.innerHTML = `
+
         <button
             class="filtro ativo"
             data-tipo="todos"
         >
             Todos
         </button>
+
     `;
 
+
+    // ======================================
+    // CRIAR BOTÕES DOS TIPOS
+    // ======================================
 
     [...tipos]
         .sort()
         .forEach(tipo => {
 
             container.innerHTML += `
+
                 <button
                     class="filtro"
                     data-tipo="${tipo}"
                 >
                     ${formatarNome(tipo)}
                 </button>
+
             `;
 
         });
 
+
+    // ======================================
+    // EVENTOS DOS BOTÕES
+    // ======================================
 
     container
         .querySelectorAll(".filtro")
@@ -252,18 +400,28 @@ function criarFiltros() {
                 "click",
                 () => {
 
-                    document
+                    // Remove ativo somente
+                    // dos botões de tipo
+
+                    container
                         .querySelectorAll(".filtro")
-                        .forEach(b =>
+                        .forEach(b => {
+
                             b.classList.remove(
                                 "ativo"
-                            )
-                        );
+                            );
 
-                    botao.classList.add("ativo");
+                        });
 
-                    filtroAtual =
+
+                    botao.classList.add(
+                        "ativo"
+                    );
+
+
+                    filtroTipoAtual =
                         botao.dataset.tipo;
+
 
                     renderizarPokemon();
 
@@ -271,6 +429,69 @@ function criarFiltros() {
             );
 
         });
+
+}
+
+
+// ==========================================
+// FILTROS DE GERAÇÃO
+// ==========================================
+
+function configurarFiltrosGeracao() {
+
+    const container =
+        document.getElementById(
+            "filtrosGeracoes"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    const botoes =
+        container.querySelectorAll(
+            ".filtro-geracao"
+        );
+
+
+    botoes.forEach(botao => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                // Remove ativo somente
+                // dos botões de geração
+
+                botoes.forEach(b => {
+
+                    b.classList.remove(
+                        "ativo"
+                    );
+
+                });
+
+
+                botao.classList.add(
+                    "ativo"
+                );
+
+
+                filtroGeracaoAtual =
+                    botao.dataset.geracao;
+
+
+                renderizarPokemon();
+
+            }
+        );
+
+    });
+
 }
 
 
@@ -296,11 +517,15 @@ async function abrirModal(id) {
                 `${API}/pokemon/${id}`
             );
 
+
         if (!resposta.ok) {
+
             throw new Error(
                 "Erro ao buscar detalhes"
             );
+
         }
+
 
         const pokemon =
             await resposta.json();
@@ -319,20 +544,28 @@ async function abrirModal(id) {
                 "botaoShiny"
             );
 
+
         const imagemPokemon =
             document.getElementById(
                 "imagemPokemonModal"
             );
 
-        if (botaoShiny && imagemPokemon) {
+
+        if (
+            botaoShiny &&
+            imagemPokemon
+        ) {
 
             let estaShiny = false;
+
 
             botaoShiny.addEventListener(
                 "click",
                 () => {
 
-                    estaShiny = !estaShiny;
+                    estaShiny =
+                        !estaShiny;
+
 
                     if (estaShiny) {
 
@@ -354,6 +587,7 @@ async function abrirModal(id) {
 
                 }
             );
+
         }
 
 
@@ -366,7 +600,9 @@ async function abrirModal(id) {
                 Não foi possível carregar os detalhes.
             </p>
         `;
+
     }
+
 }
 
 
@@ -384,6 +620,7 @@ function montarModal(pokemon) {
     const evolucoes =
         pokemon.evolucoes || [];
 
+
     const formas =
         pokemon.formas || [];
 
@@ -395,6 +632,7 @@ function montarModal(pokemon) {
             <span class="numero">
                 #${numero}
             </span>
+
 
             <h2>
                 ${formatarNome(pokemon.nome)}
@@ -420,6 +658,7 @@ function montarModal(pokemon) {
             ${
                 pokemon.sprite_shiny
                     ? `
+
                         <button
                             id="botaoShiny"
                             class="botao-shiny"
@@ -427,6 +666,7 @@ function montarModal(pokemon) {
                         >
                             ✨ Shiny
                         </button>
+
                     `
                     : ""
             }
@@ -434,11 +674,16 @@ function montarModal(pokemon) {
 
             <div class="tipos">
 
-                ${criarTipo(pokemon.tipo_1)}
+                ${criarTipo(
+                    pokemon.tipo_1
+                )}
 
-                ${pokemon.tipo_2
-                    ? criarTipo(pokemon.tipo_2)
-                    : ""
+                ${
+                    pokemon.tipo_2
+                        ? criarTipo(
+                            pokemon.tipo_2
+                        )
+                        : ""
                 }
 
             </div>
@@ -450,15 +695,18 @@ function montarModal(pokemon) {
 
             <section class="secao-detalhes">
 
-                <h3>Fraquezas</h3>
+                <h3>
+                    Fraquezas
+                </h3>
 
                 <div class="fraquezas">
 
-                    ${pokemon.fraquezas
-                        .map(tipo =>
-                            criarTipo(tipo)
-                        )
-                        .join("")
+                    ${
+                        pokemon.fraquezas
+                            .map(tipo =>
+                                criarTipo(tipo)
+                            )
+                            .join("")
                     }
 
                 </div>
@@ -472,7 +720,9 @@ function montarModal(pokemon) {
 
             <section class="secao-detalhes">
 
-                <h3>Linha evolutiva</h3>
+                <h3>
+                    Linha evolutiva
+                </h3>
 
                 <div class="evolucoes">
 
@@ -480,6 +730,7 @@ function montarModal(pokemon) {
                         evolucoes.length
                             ? evolucoes
                                 .map(evolucao => `
+
                                     <div
                                         class="evolucao"
                                         data-id="${evolucao.id}"
@@ -497,12 +748,16 @@ function montarModal(pokemon) {
                                         </span>
 
                                     </div>
+
                                 `)
                                 .join("")
+
                             : `
+
                                 <p>
                                     Nenhuma evolução direta.
                                 </p>
+
                             `
                     }
 
@@ -517,7 +772,9 @@ function montarModal(pokemon) {
 
             <section class="secao-detalhes">
 
-                <h3>Formas alternativas</h3>
+                <h3>
+                    Formas alternativas
+                </h3>
 
                 <div class="formas">
 
@@ -525,6 +782,7 @@ function montarModal(pokemon) {
                         formas.length
                             ? formas
                                 .map(forma => `
+
                                     <div
                                         class="forma"
                                     >
@@ -541,12 +799,16 @@ function montarModal(pokemon) {
                                         </span>
 
                                     </div>
+
                                 `)
                                 .join("")
+
                             : `
+
                                 <p>
                                     Nenhuma forma alternativa.
                                 </p>
+
                             `
                     }
 
@@ -555,7 +817,9 @@ function montarModal(pokemon) {
             </section>
 
         </div>
+
     `;
+
 }
 
 
@@ -568,6 +832,7 @@ function fechar() {
     modalOverlay.classList.remove(
         "aberto"
     );
+
 }
 
 
@@ -585,7 +850,9 @@ modalOverlay.addEventListener(
             evento.target ===
             modalOverlay
         ) {
+
             fechar();
+
         }
 
     }
