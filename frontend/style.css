@@ -1,0 +1,910 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(145, 0, 255, 0.18),
+            transparent 45%
+        ),
+        #07070a;
+
+    color: #f4edff;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.cabecalho {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #09090d 0%,
+            #100819 50%,
+            #08080b 100%
+        );
+
+    color: white;
+
+    padding: 25px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    border-bottom:
+        1px solid rgba(177, 0, 255, 0.45);
+
+    box-shadow:
+        0 0 25px rgba(145, 0, 255, 0.15);
+}
+
+
+/* =========================================
+   MARCA
+========================================= */
+
+.marca {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+.logo {
+    width: 75px;
+    height: 75px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(174, 0, 255, 0.8)
+        );
+
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.06);
+
+    filter:
+        drop-shadow(
+            0 0 16px rgba(194, 0, 255, 1)
+        );
+}
+
+
+.marca-texto h1 {
+    font-size: 38px;
+
+    margin-bottom: 5px;
+
+    letter-spacing: 2px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(180, 0, 255, 0.8),
+        0 0 20px rgba(140, 0, 255, 0.5);
+}
+
+
+.marca-texto p {
+    color: #bca8ce;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BUSCA
+========================================= */
+
+.busca input {
+    width: 340px;
+    max-width: 100%;
+
+    padding: 14px 18px;
+
+    border:
+        1px solid rgba(177, 0, 255, 0.5);
+
+    border-radius: 10px;
+
+    background: #111116;
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(140, 0, 255, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.busca input::placeholder {
+    color: #81778b;
+}
+
+.busca input:focus {
+    border-color: #b000ff;
+
+    box-shadow:
+        0 0 8px rgba(176, 0, 255, 0.5),
+        0 0 20px rgba(176, 0, 255, 0.15);
+}
+
+
+/* =========================================
+   FILTROS
+========================================= */
+
+.filtros {
+    padding: 25px 7%;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    background: #09090d;
+
+    border-bottom:
+        1px solid rgba(177, 0, 255, 0.15);
+}
+
+
+.filtro {
+    border:
+        1px solid #29222f;
+
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    background: #111116;
+
+    color: #bcaec5;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+
+.filtro:hover {
+    transform: translateY(-2px);
+
+    border-color: #a900ff;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 10px rgba(169, 0, 255, 0.3);
+}
+
+
+.filtro.ativo {
+    background:
+        linear-gradient(
+            135deg,
+            #7200a8,
+            #b000ff
+        );
+
+    border-color: #c85aff;
+
+    color: white;
+
+    box-shadow:
+        0 0 10px rgba(176, 0, 255, 0.5);
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.grid-pokemon {
+    padding: 25px 7% 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.card-pokemon {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111116,
+            #0c0c10
+        );
+
+    border:
+        1px solid #29232f;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.5);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.card-pokemon:hover {
+    transform:
+        translateY(-7px)
+        scale(1.015);
+
+    border-color:
+        rgba(187, 0, 255, 0.8);
+
+    box-shadow:
+        0 0 12px rgba(176, 0, 255, 0.25),
+        0 12px 30px rgba(0, 0, 0, 0.65);
+}
+
+
+.card-pokemon .numero {
+    position: absolute;
+
+    top: 12px;
+    left: 15px;
+
+    font-size: 13px;
+
+    color: #766b80;
+
+    font-weight: bold;
+}
+
+
+.card-pokemon img {
+    width: 130px;
+    height: 130px;
+
+    object-fit: contain;
+
+    margin: 15px auto 5px;
+
+    filter:
+        drop-shadow(
+            0 5px 8px rgba(0, 0, 0, 0.6)
+        );
+
+    transition: 0.25s ease;
+}
+
+
+.card-pokemon:hover img {
+    filter:
+        drop-shadow(
+            0 0 10px rgba(176, 0, 255, 0.35)
+        );
+}
+
+
+.card-pokemon h2 {
+    font-size: 18px;
+
+    margin: 5px 0 12px;
+
+    color: #f5eaff;
+}
+
+
+/* =========================================
+   TIPOS
+========================================= */
+
+.tipos {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+
+.tipo {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-transform: capitalize;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   TIPOS POKÉMON
+========================================= */
+
+.tipo-normal {
+    background: #686855;
+}
+
+.tipo-fire {
+    background: #b94e20;
+}
+
+.tipo-water {
+    background: #4569b5;
+}
+
+.tipo-electric {
+    background: #b69b16;
+    color: #fff;
+}
+
+.tipo-grass {
+    background: #4d8b31;
+}
+
+.tipo-ice {
+    background: #5faaa7;
+}
+
+.tipo-fighting {
+    background: #92221f;
+}
+
+.tipo-poison {
+    background: #762c75;
+}
+
+.tipo-ground {
+    background: #9e813c;
+}
+
+.tipo-flying {
+    background: #7560ae;
+}
+
+.tipo-psychic {
+    background: #a43761;
+}
+
+.tipo-bug {
+    background: #718012;
+}
+
+.tipo-rock {
+    background: #827329;
+}
+
+.tipo-ghost {
+    background: #50406d;
+}
+
+.tipo-dragon {
+    background: #5025ba;
+}
+
+.tipo-dark {
+    background: #493b31;
+}
+
+.tipo-steel {
+    background: #77778c;
+}
+
+.tipo-fairy {
+    background: #965d7b;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.82);
+
+    backdrop-filter: blur(5px);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+
+.modal {
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(145, 0, 255, 0.14),
+            transparent 45%
+        ),
+        #0d0d12;
+
+    width: min(800px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border:
+        1px solid rgba(180, 0, 255, 0.55);
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 0 25px rgba(145, 0, 255, 0.25),
+        0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================================
+   BOTÃO FECHAR
+========================================= */
+
+.fechar-modal {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border:
+        1px solid #302737;
+
+    border-radius: 50%;
+
+    background: #16131a;
+
+    color: #cdbbd7;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.fechar-modal:hover {
+    background: #7d00b5;
+
+    color: white;
+
+    border-color: #c052ff;
+
+    box-shadow:
+        0 0 12px rgba(176, 0, 255, 0.5);
+}
+
+
+/* =========================================
+   DETALHES
+========================================= */
+
+.detalhes {
+    text-align: center;
+}
+
+
+.detalhes > .numero {
+    color: #8e7c98;
+
+    font-size: 14px;
+}
+
+
+.detalhes h2 {
+    font-size: 32px;
+
+    margin: 5px 0 15px;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px rgba(176, 0, 255, 0.35);
+}
+
+
+.sprite-grande {
+    width: 220px;
+    height: 220px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 15px rgba(176, 0, 255, 0.25)
+        );
+}
+
+
+/* =========================================
+   BOTÃO SHINY
+========================================= */
+
+.botao-shiny {
+    display: block;
+
+    margin: 5px auto 20px;
+
+    padding: 9px 18px;
+
+    border:
+        1px solid #a900ff;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #250033,
+            #570078
+        );
+
+    color: #f3dfff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.botao-shiny:hover {
+    transform: translateY(-2px);
+
+    color: white;
+
+    border-color: #d16cff;
+
+    box-shadow:
+        0 0 12px rgba(185, 0, 255, 0.55);
+}
+
+
+/* =========================================
+   SEÇÕES
+========================================= */
+
+.secao-detalhes {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(176, 0, 255, 0.18);
+}
+
+
+.secao-detalhes h3 {
+    margin-bottom: 15px;
+
+    color: #d8b5e8;
+}
+
+
+/* =========================================
+   EVOLUÇÕES
+========================================= */
+
+.evolucoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+.evolucao {
+    width: 120px;
+
+    cursor: pointer;
+
+    padding: 10px;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+
+.evolucao:hover {
+    background: #151019;
+
+    border-color:
+        rgba(176, 0, 255, 0.4);
+
+    box-shadow:
+        0 0 10px rgba(176, 0, 255, 0.15);
+}
+
+
+.evolucao img {
+    width: 90px;
+    height: 90px;
+
+    object-fit: contain;
+}
+
+
+.evolucao span {
+    display: block;
+
+    font-size: 13px;
+
+    color: #cdbbd5;
+}
+
+
+/* =========================================
+   FORMAS
+========================================= */
+
+.formas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(130px, 1fr));
+
+    gap: 15px;
+}
+
+
+.forma {
+    padding: 10px;
+
+    background: #111116;
+
+    border:
+        1px solid #29222f;
+
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+
+.forma:hover {
+    border-color:
+        rgba(176, 0, 255, 0.5);
+
+    box-shadow:
+        0 0 10px rgba(176, 0, 255, 0.15);
+}
+
+
+.forma img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+}
+
+
+.forma span {
+    display: block;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+    color: #cdbbd5;
+}
+
+
+/* =========================================
+   ESTADOS
+========================================= */
+
+.carregando,
+.sem-resultados,
+.erro {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px;
+
+    color: #8e8196;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #08080b;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #6800a0,
+            #b000ff
+        );
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c53cff;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 700px) {
+
+    .cabecalho {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+
+        padding: 25px 20px;
+    }
+
+
+    .marca {
+        justify-content: center;
+    }
+
+
+    .marca-texto h1 {
+        font-size: 32px;
+    }
+
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+
+    .busca input {
+        width: 100%;
+    }
+
+
+    .filtros {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .grid-pokemon {
+        padding-left: 20px;
+        padding-right: 20px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .card-pokemon {
+        padding: 12px;
+    }
+
+
+    .card-pokemon img {
+        width: 100px;
+        height: 100px;
+    }
+
+
+    .modal {
+        padding: 25px 18px;
+    }
+
+
+    .sprite-grande {
+        width: 180px;
+        height: 180px;
+    }
+
+}

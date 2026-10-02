@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Minidex</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <header class="cabecalho">
+
+        <div class="marca">
+
+            <img
+                src="../assets/img/logo.png"
+                alt="Logo Minidex"
+                class="logo"
+            >
+
+            <div class="marca-texto">
+
+                <h1>Minidex</h1>
+
+                <p>
+                    Sua Pokédex pessoal
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="busca">
+
+            <input
+                type="text"
+                id="campoBusca"
+                placeholder="Pesquisar Pokémon..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section
+            class="filtros"
+            id="filtrosTipos"
+        >
+
+            <button
+                class="filtro ativo"
+                data-tipo="todos"
+            >
+                Todos
+            </button>
+
+        </section>
+
+
+        <section
+            class="grid-pokemon"
+            id="gridPokemon"
+        >
+
+            <div class="carregando">
+                Carregando Pokémon...
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================= -->
+    <!-- MODAL -->
+    <!-- ================================= -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    >
+
+        <div
+            class="modal"
+            id="modal"
+        >
+
+            <button
+                class="fechar-modal"
+                id="fecharModal"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+
+            <div id="conteudoModal">
+
+                <!-- Conteúdo preenchido pelo JavaScript -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
