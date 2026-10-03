@@ -7,6 +7,7 @@ const supabase = createClient(
     process.env.SUPABASE_SECRET_KEY
 );
 
+
 // ==========================================
 // CONFIGURAÇÃO
 // ==========================================
@@ -18,19 +19,69 @@ const API_BASE = "https://pokeapi.co/api/v2";
 
 
 // ==========================================
-// BUSCAR DADOS
+// BUSCAR DADOS DA API
 // ==========================================
 
 async function buscar(url) {
+
     const resposta = await fetch(url);
 
     if (!resposta.ok) {
+
         throw new Error(
             `Erro ${resposta.status} ao acessar ${url}`
         );
+
     }
 
     return await resposta.json();
+}
+
+
+// ==========================================
+// IDENTIFICAR TIPO DA FORMA
+// ==========================================
+
+function classificarForma(nome) {
+
+    const nomeMinusculo = nome.toLowerCase();
+
+
+    // Mega Evolução
+    if (nomeMinusculo.includes("mega")) {
+        return "mega";
+    }
+
+
+    // Formas regionais
+    if (nomeMinusculo.includes("alola")) {
+        return "alola";
+    }
+
+    if (nomeMinusculo.includes("galar")) {
+        return "galar";
+    }
+
+    if (nomeMinusculo.includes("hisui")) {
+        return "hisui";
+    }
+
+    if (nomeMinusculo.includes("paldea")) {
+        return "paldea";
+    }
+
+
+    // Gigantamax
+    if (
+        nomeMinusculo.includes("gmax") ||
+        nomeMinusculo.includes("gigantamax")
+    ) {
+        return "gigantamax";
+    }
+
+
+    // Qualquer outra forma
+    return "outra";
 }
 
 
@@ -52,6 +103,10 @@ async function importarFormas() {
     let totalFormas = 0;
 
 
+    // ==========================================
+    // PERCORRER POKÉMON
+    // ==========================================
+
     for (
         let id = POKEMON_INICIAL;
         id <= POKEMON_FINAL;
@@ -60,6 +115,7 @@ async function importarFormas() {
 
         try {
 
+            // Busca a espécie
             const especie = await buscar(
                 `${API_BASE}/pokemon-species/${id}`
             );
@@ -69,9 +125,13 @@ async function importarFormas() {
                 especie.varieties || [];
 
 
+            // ==========================================
+            // PERCORRER VARIEDADES
+            // ==========================================
+
             for (const variedade of variedades) {
 
-                // A forma padrão não é uma forma alternativa
+                // Ignora a forma padrão
                 if (variedade.is_default) {
                     continue;
                 }
@@ -85,14 +145,34 @@ async function importarFormas() {
                     variedade.pokemon.name;
 
 
+                // Busca os dados específicos da forma
                 const dadosForma =
                     await buscar(pokemonUrl);
 
 
-                const sprite =
-                    dadosForma.sprites
-                        ?.front_default || null;
+                // ==========================================
+                // SPRITES
+                // ==========================================
 
+                const sprite =
+                    dadosForma.sprites?.front_default || null;
+
+
+                const spriteShiny =
+                    dadosForma.sprites?.front_shiny || null;
+
+
+                // ==========================================
+                // CLASSIFICAR FORMA
+                // ==========================================
+
+                const tipo =
+                    classificarForma(nomeForma);
+
+
+                // ==========================================
+                // DADOS PARA O SUPABASE
+                // ==========================================
 
                 const dados = {
 
@@ -100,10 +180,18 @@ async function importarFormas() {
 
                     nome: nomeForma,
 
-                    sprite: sprite
+                    tipo: tipo,
+
+                    sprite: sprite,
+
+                    sprite_shiny: spriteShiny
 
                 };
 
+
+                // ==========================================
+                // SALVAR NO SUPABASE
+                // ==========================================
 
                 const { error } =
                     await supabase
@@ -129,8 +217,12 @@ async function importarFormas() {
                 totalFormas++;
 
 
+                // ==========================================
+                // LOG
+                // ==========================================
+
                 console.log(
-                    `  ↳ #${String(id).padStart(3, "0")} → ${nomeForma}`
+                    `  ↳ #${String(id).padStart(3, "0")} → ${nomeForma} | ${tipo}`
                 );
 
             }
@@ -153,6 +245,10 @@ async function importarFormas() {
     }
 
 
+    // ==========================================
+    // FINAL
+    // ==========================================
+
     console.log("");
 
     console.log(
@@ -167,5 +263,9 @@ async function importarFormas() {
 
 }
 
+
+// ==========================================
+// EXECUTAR
+// ==========================================
 
 importarFormas();

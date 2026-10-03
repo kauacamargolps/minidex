@@ -170,7 +170,7 @@ app.get("/pokemon/:id", async (req, res) => {
     const { data: formas, error: erroFormas } =
         await supabase
             .from("formas")
-            .select("id, nome, sprite")
+            .select("id, nome, sprite, sprite_shiny")
             .eq("pokemon_id", id)
             .order("id");
 
