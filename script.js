@@ -590,6 +590,64 @@ async function abrirModal(id) {
 
         }
 
+        // ==================================
+// BOTÕES SHINY DAS FORMAS ALTERNATIVAS
+// ==================================
+
+const formas = pokemon.formas || [];
+
+formas.forEach((forma, indice) => {
+
+    const botaoShinyForma =
+        document.getElementById(
+            `botaoShinyForma_${indice}`
+        );
+
+    const imagemForma =
+        document.getElementById(
+            `imagemForma_${indice}`
+        );
+
+    if (
+        botaoShinyForma &&
+        imagemForma &&
+        forma.sprite_shiny
+    ) {
+
+        let formaEstaShiny = false;
+
+        botaoShinyForma.addEventListener(
+            "click",
+            (evento) => {
+
+                evento.stopPropagation();
+
+                formaEstaShiny = !formaEstaShiny;
+
+                if (formaEstaShiny) {
+
+                    imagemForma.src =
+                        forma.sprite_shiny;
+
+                    botaoShinyForma.textContent =
+                        "⭐ Normal";
+
+                } else {
+
+                    imagemForma.src =
+                        forma.sprite;
+
+                    botaoShinyForma.textContent =
+                        "✨ Shiny";
+
+                }
+
+            }
+        );
+
+    }
+
+});
 
     } catch (erro) {
 
@@ -781,13 +839,15 @@ function montarModal(pokemon) {
                     ${
                         formas.length
                             ? formas
-                                .map(forma => `
+                                .map((forma, indice) => `
 
                                     <div
                                         class="forma"
+                                        data-forma-indice="${indice}"
                                     >
 
                                         <img
+                                            id="imagemForma_${indice}"
                                             src="${forma.sprite}"
                                             alt="${forma.nome}"
                                         >
@@ -797,6 +857,14 @@ function montarModal(pokemon) {
                                                 forma.nome
                                             )}
                                         </span>
+
+                                        <button
+                                            id="botaoShinyForma_${indice}"
+                                            class="botao-shiny"
+                                            type="button"
+                                        >
+                                            ✨ Shiny
+                                        </button>
 
                                     </div>
 
@@ -819,9 +887,9 @@ function montarModal(pokemon) {
         </div>
 
     `;
-
 }
 
+    
 
 // ==========================================
 // FECHAR MODAL
