@@ -1,0 +1,739 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   BASE
+========================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    color: #f4edff;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(120, 0, 180, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(170, 0, 255, 0.10),
+            transparent 35%
+        ),
+        #07070a;
+}
+
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.cabecalho-jogos {
+    width: 100%;
+
+    padding: 25px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 10, 25, 0.98),
+            rgba(10, 8, 14, 0.98)
+        );
+
+    border-bottom: 1px solid rgba(176, 0, 255, 0.35);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+.marca-jogos {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.marca-jogos h1 {
+    font-size: 34px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(176, 0, 255, 0.6);
+}
+
+
+.marca-jogos p {
+    margin-top: 5px;
+
+    color: #bca8ce;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   BOTÃO VOLTAR
+========================================== */
+
+.voltar {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(120, 0, 180, 0.15);
+
+    border: 1px solid rgba(176, 0, 255, 0.4);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    transition: 0.25s ease;
+}
+
+
+.voltar:hover {
+    background: rgba(176, 0, 255, 0.25);
+
+    border-color: #c85aff;
+
+    transform: translateX(-3px);
+
+    box-shadow:
+        0 0 15px rgba(176, 0, 255, 0.3);
+}
+
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+.titulo-secao {
+    width: 86%;
+
+    max-width: 1400px;
+
+    margin: 45px auto 25px;
+}
+
+
+.titulo-secao h2 {
+    font-size: 28px;
+
+    margin-bottom: 8px;
+
+    color: #ffffff;
+}
+
+
+.titulo-secao p {
+    color: #a99ab5;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+.filtros-jogos {
+    width: 86%;
+
+    max-width: 1400px;
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+
+.filtro-jogo {
+    padding: 9px 16px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(176, 0, 255, 0.25);
+
+    background: rgba(20, 15, 25, 0.8);
+
+    color: #bca8ce;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
+}
+
+
+.filtro-jogo:hover {
+    border-color: #b000ff;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+.filtro-jogo.ativo {
+    background:
+        linear-gradient(
+            135deg,
+            #7200a8,
+            #b000ff
+        );
+
+    border-color: #c85aff;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 15px rgba(176, 0, 255, 0.3);
+}
+
+
+/* ==========================================
+   GRID
+========================================== */
+
+.grid-jogos {
+    width: 86%;
+
+    max-width: 1400px;
+
+    margin: 0 auto 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(220px, 1fr)
+        );
+
+    gap: 22px;
+}
+
+
+/* ==========================================
+   CARD DO JOGO
+========================================== */
+
+.card-jogo {
+    position: relative;
+
+    min-height: 280px;
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 18, 32, 0.95),
+            rgba(10, 10, 14, 0.95)
+        );
+
+    border: 1px solid rgba(176, 0, 255, 0.18);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.card-jogo:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(200, 90, 255, 0.65);
+
+    box-shadow:
+        0 0 20px rgba(176, 0, 255, 0.18),
+        0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==========================================
+   IMAGEM DO JOGO
+========================================== */
+
+.card-jogo-imagem {
+    width: 100%;
+
+    height: 145px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(176, 0, 255, 0.15),
+            rgba(5, 5, 7, 0.8)
+        );
+}
+
+
+.card-jogo-imagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+
+.card-jogo:hover
+.card-jogo-imagem img {
+    transform: scale(1.06);
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.card-jogo-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.card-jogo-geracao {
+    font-size: 12px;
+
+    color: #b000ff;
+
+    text-transform: uppercase;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+.card-jogo h3 {
+    font-size: 20px;
+
+    color: #ffffff;
+}
+
+
+.card-jogo-descricao {
+    color: #a99ab5;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.card-jogo-badge {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    color: #ffffff;
+
+    background:
+        rgba(176, 0, 255, 0.18);
+
+    border: 1px solid rgba(200, 90, 255, 0.35);
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+
+/* ==========================================
+   MODAL DO JOGO
+========================================== */
+
+.modal-jogo {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #17121c,
+            #0b0a0e
+        );
+
+    border: 1px solid rgba(200, 90, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(176, 0, 255, 0.18),
+        0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ==========================================
+   FECHAR MODAL
+========================================== */
+
+.fechar-modal {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.fechar-modal:hover {
+    background: rgba(255, 50, 100, 0.15);
+
+    border-color: rgba(255, 80, 120, 0.5);
+
+    transform: rotate(90deg);
+}
+
+
+/* ==========================================
+   CONTEÚDO DO MODAL
+========================================== */
+
+.modal-conteudo {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.modal-capa {
+    width: 100%;
+
+    height: 230px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(176, 0, 255, 0.18),
+            rgba(5, 5, 7, 0.9)
+        );
+}
+
+
+.modal-capa img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+.modal-geracao {
+    color: #b000ff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.modal-conteudo h2 {
+    color: #ffffff;
+
+    font-size: 30px;
+}
+
+
+.modal-conteudo p {
+    color: #c2b5ca;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+
+.modal-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+
+.modal-info-item {
+    padding: 14px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(176, 0, 255, 0.12);
+}
+
+
+.modal-info-item strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.modal-info-item span {
+    color: #a99ab5;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #07070a;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #4d1763;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8f20bd;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .cabecalho-jogos {
+        padding: 20px;
+    }
+
+    .marca-jogos h1 {
+        font-size: 25px;
+    }
+
+    .marca-jogos p {
+        font-size: 12px;
+    }
+
+    .titulo-secao {
+        width: 90%;
+
+        margin-top: 30px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 24px;
+    }
+
+    .filtros-jogos {
+        width: 90%;
+    }
+
+    .grid-jogos {
+        width: 90%;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 14px;
+    }
+
+    .card-jogo {
+        min-height: 240px;
+
+        padding: 14px;
+    }
+
+    .card-jogo-imagem {
+        height: 115px;
+    }
+
+    .card-jogo h3 {
+        font-size: 17px;
+    }
+
+    .card-jogo-descricao {
+        font-size: 12px;
+    }
+
+    .modal-jogo {
+        padding: 25px 20px;
+    }
+
+    .modal-capa {
+        height: 170px;
+    }
+
+    .modal-conteudo h2 {
+        font-size: 25px;
+    }
+
+    .modal-info {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .grid-jogos {
+        grid-template-columns: 1fr;
+    }
+
+}

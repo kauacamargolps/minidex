@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MiniDex Games</title>
+
+    <link rel="stylesheet" href="jogos.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="cabecalho-jogos">
+
+        <div class="marca-jogos">
+
+            <a href="index.html" class="voltar">
+                ←
+            </a>
+
+            <div>
+                <h1>MiniDex Games</h1>
+                <p>Explore os jogos do universo Pokémon</p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- TÍTULO -->
+        <section class="titulo-secao">
+
+            <h2>Jogos Pokémon</h2>
+
+            <p>
+                Explore diferentes gerações e conheça alguns dos
+                principais jogos da franquia.
+            </p>
+
+        </section>
+
+
+        <!-- FILTROS -->
+        <section class="filtros-jogos">
+
+            <button
+                class="filtro-jogo ativo"
+                data-geracao="todas">
+                Todas
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="1">
+                Gen I
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="2">
+                Gen II
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="3">
+                Gen III
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="4">
+                Gen IV
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="5">
+                Gen V
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="6">
+                Gen VI
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="7">
+                Gen VII
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="8">
+                Gen VIII
+            </button>
+
+            <button
+                class="filtro-jogo"
+                data-geracao="9">
+                Gen IX
+            </button>
+
+        </section>
+
+
+        <!-- GRID DOS JOGOS -->
+        <section
+            class="grid-jogos"
+            id="gridJogos">
+
+            <!-- Os cards serão criados pelo jogos.js -->
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+    <div
+        class="modal-overlay"
+        id="modalOverlay">
+
+        <div class="modal-jogo">
+
+            <button
+                class="fechar-modal"
+                id="fecharModal"
+                aria-label="Fechar">
+                ×
+            </button>
+
+            <div id="conteudoModal">
+
+                <!-- Conteúdo preenchido pelo JS -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="jogos.js"></script>
+
+</body>
+
+</html>

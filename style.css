@@ -830,6 +830,66 @@ body {
     background: #c53cff;
 }
 
+/* ==========================================
+   BOTÃO DOS JOGOS
+========================================== */
+
+.botao-jogos {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7200a8,
+            #b000ff
+        );
+
+    border: 1px solid #c85aff;
+    border-radius: 50%;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 0 12px rgba(176, 0, 255, 0.45),
+        0 5px 20px rgba(0, 0, 0, 0.5);
+
+    z-index: 900;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.botao-jogos:hover {
+    transform:
+        translateY(-4px)
+        scale(1.05);
+
+    border-color: #e29aff;
+
+    box-shadow:
+        0 0 18px rgba(176, 0, 255, 0.7),
+        0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.botao-jogos:active {
+    transform: scale(0.95);
+}
+
 
 /* =========================================
    RESPONSIVO
@@ -907,6 +967,16 @@ body {
         height: 180px;
     }
 
+}
+
+.botao-jogos {
+    width: 55px;
+    height: 55px;
+
+    right: 18px;
+    bottom: 18px;
+
+    font-size: 24px;
 }
 
 /* ==========================================
