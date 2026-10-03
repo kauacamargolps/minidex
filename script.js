@@ -595,6 +595,7 @@ async function abrirModal(id) {
 // ==================================
 
 const formas = pokemon.formas || [];
+console.log("FORMAS RECEBIDAS:", formas);
 
 formas.forEach((forma, indice) => {
 
