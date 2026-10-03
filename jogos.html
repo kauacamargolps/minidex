@@ -12,135 +12,122 @@
 
 <body>
 
-    <!-- CABEÇALHO -->
     <header class="cabecalho-jogos">
 
-        <div class="marca-jogos">
+        <a href="index.html" class="botao-voltar">
+            ← MiniDex
+        </a>
 
-            <a href="index.html" class="voltar">
-                ←
-            </a>
-
-            <div>
-                <h1>MiniDex Games</h1>
-                <p>Explore os jogos do universo Pokémon</p>
-            </div>
-
+        <div class="titulo-jogos">
+            <span>🎮</span>
+            <h1>MiniDex Games</h1>
         </div>
+
+        <div class="espaco-header"></div>
 
     </header>
 
 
-    <main>
+    <main class="conteudo-jogos">
 
-        <!-- TÍTULO -->
-        <section class="titulo-secao">
+        <section class="introducao-jogos">
 
-            <h2>Jogos Pokémon</h2>
+            <p class="mini-titulo">
+                UNIVERSO POKÉMON
+            </p>
+
+            <h2>
+                Jogos Pokémon
+            </h2>
 
             <p>
-                Explore diferentes gerações e conheça alguns dos
-                principais jogos da franquia.
+                Explore os principais jogos da franquia Pokémon,
+                suas regiões, ginásios, iniciais e muito mais.
             </p>
 
         </section>
 
 
         <!-- FILTROS -->
+
         <section class="filtros-jogos">
 
-            <button
-                class="filtro-jogo ativo"
-                data-geracao="todas">
+            <button class="filtro-jogo ativo" data-geracao="todas">
                 Todas
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="1">
+            <button class="filtro-jogo" data-geracao="1">
                 Gen I
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="2">
+            <button class="filtro-jogo" data-geracao="2">
                 Gen II
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="3">
+            <button class="filtro-jogo" data-geracao="3">
                 Gen III
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="4">
+            <button class="filtro-jogo" data-geracao="4">
                 Gen IV
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="5">
+            <button class="filtro-jogo" data-geracao="5">
                 Gen V
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="6">
+            <button class="filtro-jogo" data-geracao="6">
                 Gen VI
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="7">
+            <button class="filtro-jogo" data-geracao="7">
                 Gen VII
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="8">
+            <button class="filtro-jogo" data-geracao="8">
                 Gen VIII
             </button>
 
-            <button
-                class="filtro-jogo"
-                data-geracao="9">
+            <button class="filtro-jogo" data-geracao="9">
                 Gen IX
             </button>
 
         </section>
 
 
-        <!-- GRID DOS JOGOS -->
-        <section
-            class="grid-jogos"
-            id="gridJogos">
+        <!-- GRID -->
 
-            <!-- Os cards serão criados pelo jogos.js -->
+        <section id="gridJogos" class="grid-jogos">
+
+            <div class="estado-carregando">
+                <div class="loader"></div>
+                <p>Carregando jogos...</p>
+            </div>
 
         </section>
 
     </main>
 
 
-    <!-- MODAL -->
-    <div
-        class="modal-overlay"
-        id="modalOverlay">
+    <!-- =====================================================
+         MODAL PRINCIPAL
+    ====================================================== -->
 
-        <div class="modal-jogo">
+    <div id="modalOverlay" class="modal-overlay">
+
+        <div class="modal modal-principal">
 
             <button
-                class="fechar-modal"
                 id="fecharModal"
-                aria-label="Fechar">
+                class="fechar-modal"
+                aria-label="Fechar"
+            >
                 ×
             </button>
 
             <div id="conteudoModal">
 
-                <!-- Conteúdo preenchido pelo JS -->
+                <!-- Conteúdo inserido pelo JavaScript -->
 
             </div>
 
@@ -148,6 +135,39 @@
 
     </div>
 
+
+    <!-- =====================================================
+         MODAL SECUNDÁRIO
+    ====================================================== -->
+
+    <div id="modalSecundarioOverlay" class="modal-overlay modal-secundario-overlay">
+
+        <div class="modal modal-secundario">
+
+            <button
+                id="fecharModalSecundario"
+                class="fechar-modal"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+            <div id="conteudoModalSecundario">
+
+                <!-- Conteúdo inserido pelo JavaScript -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JAVASCRIPT -->
 
     <script src="jogos.js"></script>
 

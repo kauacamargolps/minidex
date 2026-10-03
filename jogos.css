@@ -1,17 +1,12 @@
-/* ==========================================
+/* =========================================================
    RESET
-========================================== */
+========================================================= */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
-/* ==========================================
-   BASE
-========================================== */
 
 html {
     scroll-behavior: smooth;
@@ -20,566 +15,139 @@ html {
 body {
     min-height: 100vh;
 
-    font-family: Arial, sans-serif;
-
-    color: #f4edff;
-
     background:
         radial-gradient(
-            circle at top left,
-            rgba(120, 0, 180, 0.16),
+            circle at top,
+            rgba(130, 40, 255, 0.10),
             transparent 35%
         ),
-        radial-gradient(
-            circle at bottom right,
-            rgba(170, 0, 255, 0.10),
-            transparent 35%
-        ),
-        #07070a;
+        #050505;
+
+    color: #ffffff;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
 }
 
 
-/* ==========================================
+/* =========================================================
    CABEÇALHO
-========================================== */
+========================================================= */
 
 .cabecalho-jogos {
     width: 100%;
 
-    padding: 25px 7%;
+    min-height: 80px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(20, 10, 25, 0.98),
-            rgba(10, 8, 14, 0.98)
-        );
-
-    border-bottom: 1px solid rgba(176, 0, 255, 0.35);
-
-    box-shadow:
-        0 5px 25px rgba(0, 0, 0, 0.5);
-}
-
-
-.marca-jogos {
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-}
-
-
-.marca-jogos h1 {
-    font-size: 34px;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 0 10px rgba(176, 0, 255, 0.6);
-}
-
-
-.marca-jogos p {
-    margin-top: 5px;
-
-    color: #bca8ce;
-
-    font-size: 14px;
-}
-
-
-/* ==========================================
-   BOTÃO VOLTAR
-========================================== */
-
-.voltar {
-    width: 48px;
-    height: 48px;
+    padding: 18px 5%;
 
     display: flex;
-
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
-    border-radius: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-    background: rgba(120, 0, 180, 0.15);
+    background: rgba(5, 5, 5, 0.80);
 
-    border: 1px solid rgba(176, 0, 255, 0.4);
+    backdrop-filter: blur(15px);
 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.botao-voltar {
     color: #ffffff;
 
     text-decoration: none;
 
-    font-size: 25px;
+    padding: 10px 16px;
 
-    transition: 0.25s ease;
-}
-
-
-.voltar:hover {
-    background: rgba(176, 0, 255, 0.25);
-
-    border-color: #c85aff;
-
-    transform: translateX(-3px);
-
-    box-shadow:
-        0 0 15px rgba(176, 0, 255, 0.3);
-}
-
-
-/* ==========================================
-   TÍTULO
-========================================== */
-
-.titulo-secao {
-    width: 86%;
-
-    max-width: 1400px;
-
-    margin: 45px auto 25px;
-}
-
-
-.titulo-secao h2 {
-    font-size: 28px;
-
-    margin-bottom: 8px;
-
-    color: #ffffff;
-}
-
-
-.titulo-secao p {
-    color: #a99ab5;
-
-    font-size: 15px;
-}
-
-
-/* ==========================================
-   FILTROS
-========================================== */
-
-.filtros-jogos {
-    width: 86%;
-
-    max-width: 1400px;
-
-    margin: 0 auto 30px;
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-}
-
-
-.filtro-jogo {
-    padding: 9px 16px;
+    border: 1px solid rgba(160, 80, 255, 0.35);
 
     border-radius: 10px;
 
-    border: 1px solid rgba(176, 0, 255, 0.25);
+    background: rgba(120, 40, 255, 0.08);
 
-    background: rgba(20, 15, 25, 0.8);
-
-    color: #bca8ce;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    transition: 0.25s ease;
+    transition: 0.25s;
 }
 
+.botao-voltar:hover {
+    background: rgba(120, 40, 255, 0.18);
 
-.filtro-jogo:hover {
-    border-color: #b000ff;
+    border-color: rgba(180, 100, 255, 0.7);
 
-    color: #ffffff;
-
-    transform: translateY(-2px);
+    transform: translateX(-3px);
 }
 
-
-.filtro-jogo.ativo {
-    background:
-        linear-gradient(
-            135deg,
-            #7200a8,
-            #b000ff
-        );
-
-    border-color: #c85aff;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 0 15px rgba(176, 0, 255, 0.3);
-}
-
-
-/* ==========================================
-   GRID
-========================================== */
-
-.grid-jogos {
-    width: 86%;
-
-    max-width: 1400px;
-
-    margin: 0 auto 60px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(220px, 1fr)
-        );
-
-    gap: 22px;
-}
-
-
-/* ==========================================
-   CARD DO JOGO
-========================================== */
-
-.card-jogo {
-    position: relative;
-
-    min-height: 280px;
-
-    padding: 20px;
-
+.titulo-jogos {
     display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    overflow: hidden;
-
-    cursor: pointer;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25, 18, 32, 0.95),
-            rgba(10, 10, 14, 0.95)
-        );
-
-    border: 1px solid rgba(176, 0, 255, 0.18);
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.35);
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-.card-jogo:hover {
-    transform: translateY(-7px);
-
-    border-color: rgba(200, 90, 255, 0.65);
-
-    box-shadow:
-        0 0 20px rgba(176, 0, 255, 0.18),
-        0 15px 35px rgba(0, 0, 0, 0.5);
-}
-
-
-/* ==========================================
-   IMAGEM DO JOGO
-========================================== */
-
-.card-jogo-imagem {
-    width: 100%;
-
-    height: 145px;
-
-    display: flex;
-
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+}
 
-    margin-bottom: 15px;
+.titulo-jogos span {
+    font-size: 25px;
+}
 
-    border-radius: 12px;
+.titulo-jogos h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
 
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(176, 0, 255, 0.15),
-            rgba(5, 5, 7, 0.8)
-        );
+.espaco-header {
+    width: 90px;
 }
 
 
-.card-jogo-imagem img {
-    width: 100%;
-    height: 100%;
+/* =========================================================
+   CONTEÚDO
+========================================================= */
 
-    object-fit: contain;
+.conteudo-jogos {
+    width: 92%;
+    max-width: 1250px;
 
-    transition: transform 0.3s ease;
+    margin: 0 auto;
+
+    padding: 70px 0;
 }
 
 
-.card-jogo:hover
-.card-jogo-imagem img {
-    transform: scale(1.06);
-}
+/* =========================================================
+   INTRODUÇÃO
+========================================================= */
 
-
-/* ==========================================
-   INFORMAÇÕES
-========================================== */
-
-.card-jogo-info {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-}
-
-
-.card-jogo-geracao {
-    font-size: 12px;
-
-    color: #b000ff;
-
-    text-transform: uppercase;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-}
-
-
-.card-jogo h3 {
-    font-size: 20px;
-
-    color: #ffffff;
-}
-
-
-.card-jogo-descricao {
-    color: #a99ab5;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-}
-
-
-/* ==========================================
-   BADGE
-========================================== */
-
-.card-jogo-badge {
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    padding: 5px 9px;
-
-    border-radius: 8px;
-
-    font-size: 11px;
-
-    color: #ffffff;
-
-    background:
-        rgba(176, 0, 255, 0.18);
-
-    border: 1px solid rgba(200, 90, 255, 0.35);
-}
-
-
-/* ==========================================
-   MODAL
-========================================== */
-
-.modal-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1000;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(0, 0, 0, 0.78);
-
-    backdrop-filter: blur(8px);
-}
-
-
-.modal-overlay.aberto {
-    display: flex;
-}
-
-
-/* ==========================================
-   MODAL DO JOGO
-========================================== */
-
-.modal-jogo {
-    position: relative;
-
-    width: 100%;
+.introducao-jogos {
+    text-align: center;
 
     max-width: 700px;
 
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 35px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #17121c,
-            #0b0a0e
-        );
-
-    border: 1px solid rgba(200, 90, 255, 0.35);
-
-    box-shadow:
-        0 0 40px rgba(176, 0, 255, 0.18),
-        0 20px 60px rgba(0, 0, 0, 0.7);
+    margin: 0 auto 45px;
 }
 
+.mini-titulo {
+    color: #a96cff;
 
-/* ==========================================
-   FECHAR MODAL
-========================================== */
+    font-size: 12px;
 
-.fechar-modal {
-    position: absolute;
+    font-weight: 700;
 
-    top: 15px;
-    right: 18px;
+    letter-spacing: 3px;
 
-    width: 38px;
-    height: 38px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.15);
-
-    background: rgba(255, 255, 255, 0.05);
-
-    color: #ffffff;
-
-    font-size: 24px;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
+    margin-bottom: 12px;
 }
 
+.introducao-jogos h2 {
+    font-size: clamp(32px, 5vw, 48px);
 
-.fechar-modal:hover {
-    background: rgba(255, 50, 100, 0.15);
-
-    border-color: rgba(255, 80, 120, 0.5);
-
-    transform: rotate(90deg);
+    margin-bottom: 15px;
 }
 
-
-/* ==========================================
-   CONTEÚDO DO MODAL
-========================================== */
-
-.modal-conteudo {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-
-.modal-capa {
-    width: 100%;
-
-    height: 230px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(176, 0, 255, 0.18),
-            rgba(5, 5, 7, 0.9)
-        );
-}
-
-
-.modal-capa img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-}
-
-
-.modal-geracao {
-    color: #b000ff;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-
-.modal-conteudo h2 {
-    color: #ffffff;
-
-    font-size: 30px;
-}
-
-
-.modal-conteudo p {
-    color: #c2b5ca;
+.introducao-jogos > p:last-child {
+    color: #999999;
 
     line-height: 1.7;
 
@@ -587,153 +155,909 @@ body {
 }
 
 
-.modal-info {
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.filtros-jogos {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 45px;
+}
+
+.filtro-jogo {
+    border: 1px solid rgba(160, 80, 255, 0.25);
+
+    background: rgba(120, 40, 255, 0.05);
+
+    color: #bdbdbd;
+
+    padding: 9px 15px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.25s;
+}
+
+.filtro-jogo:hover {
+    color: #ffffff;
+
+    border-color: rgba(180, 100, 255, 0.65);
+
+    background: rgba(120, 40, 255, 0.12);
+}
+
+.filtro-jogo.ativo {
+    color: #ffffff;
+
+    background: #782cff;
+
+    border-color: #782cff;
+
+    box-shadow:
+        0 0 20px rgba(120, 44, 255, 0.25);
+}
+
+
+/* =========================================================
+   GRID DOS JOGOS
+========================================================= */
+
+.grid-jogos {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(auto-fill, minmax(230px, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card-jogo {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.015)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+
+    backdrop-filter: blur(10px);
+}
+
+.card-jogo:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(160, 80, 255, 0.55);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(120, 40, 255, 0.10);
+}
+
+.card-imagem {
+    width: 100%;
+
+    height: 290px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.card-conteudo {
+    padding: 18px;
+}
+
+.card-geracao {
+    color: #a96cff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.card-conteudo h3 {
+    font-size: 19px;
+
+    margin-bottom: 7px;
+}
+
+.card-info {
+    color: #888888;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+.estado-carregando,
+.estado-erro,
+.estado-vazio {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    color: #888888;
+}
+
+.estado-erro {
+    color: #ff6b6b;
+}
+
+.loader {
+    width: 35px;
+    height: 35px;
+
+    margin: 0 auto 15px;
+
+    border: 3px solid rgba(255, 255, 255, 0.10);
+
+    border-top-color: #8d4dff;
+
+    border-radius: 50%;
+
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   OVERLAY DOS MODAIS
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s,
+        visibility 0.25s;
+}
+
+.modal-overlay.aberto {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   MODAL PRINCIPAL
+========================================================= */
+
+.modal {
+    position: relative;
+
+    width: 100%;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111111,
+            #090909
+        );
+
+    border: 1px solid rgba(170, 90, 255, 0.25);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.75),
+        0 0 50px rgba(120, 40, 255, 0.08);
+}
+
+.modal-principal {
+    max-width: 850px;
+}
+
+.modal-secundario {
+    max-width: 1000px;
+}
+
+
+/* =========================================================
+   MODAL SECUNDÁRIO
+========================================================= */
+
+.modal-secundario-overlay {
+    z-index: 700;
+
+    background: rgba(0, 0, 0, 0.88);
+}
+
+
+/* =========================================================
+   BOTÃO FECHAR
+========================================================= */
+
+.fechar-modal {
+    position: absolute;
+
+    top: 16px;
+    right: 18px;
+
+    z-index: 20;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(0, 0, 0, 0.5);
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.fechar-modal:hover {
+    background: rgba(255, 60, 80, 0.15);
+
+    border-color: rgba(255, 80, 100, 0.5);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   CONTEÚDO DO MODAL PRINCIPAL
+========================================================= */
+
+.modal-jogo {
+    padding: 35px;
+}
+
+.modal-capa {
+    width: 100%;
+
+    max-height: 390px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    display: block;
+
+    margin-bottom: 25px;
+}
+
+.modal-titulo {
+    font-size: clamp(28px, 5vw, 42px);
+
+    margin-bottom: 8px;
+}
+
+.modal-subtitulo {
+    color: #a96cff;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+.modal-descricao {
+    color: #b0b0b0;
+
+    line-height: 1.8;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   INICIAIS
+========================================================= */
+
+.secao-iniciais {
+    margin-bottom: 35px;
+}
+
+.titulo-secao {
+    font-size: 18px;
+
+    margin-bottom: 18px;
+}
+
+.grid-iniciais {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.inicial-card {
+    text-align: center;
+
+    padding: 20px 12px;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    transition: 0.25s;
+}
+
+.inicial-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(170, 90, 255, 0.4);
+
+    background: rgba(130, 50, 255, 0.07);
+}
+
+.inicial-card img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+
+    margin-bottom: 8px;
+}
+
+.inicial-card h4 {
+    font-size: 16px;
+
+    margin-bottom: 4px;
+}
+
+.inicial-tipo {
+    color: #999999;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BOTÕES DE DETALHES
+========================================================= */
+
+.botoes-detalhes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 12px;
 }
 
+.botao-detalhe {
+    padding: 17px 12px;
 
-.modal-info-item {
-    padding: 14px;
+    border-radius: 13px;
 
-    border-radius: 10px;
+    border: 1px solid rgba(150, 70, 255, 0.25);
 
-    background: rgba(255, 255, 255, 0.035);
-
-    border: 1px solid rgba(176, 0, 255, 0.12);
-}
-
-
-.modal-info-item strong {
-    display: block;
-
-    margin-bottom: 5px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(130, 50, 255, 0.10),
+            rgba(130, 50, 255, 0.03)
+        );
 
     color: #ffffff;
 
-    font-size: 13px;
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+.botao-detalhe:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(180, 100, 255, 0.65);
+
+    background:
+        rgba(130, 50, 255, 0.16);
+
+    box-shadow:
+        0 8px 25px rgba(120, 40, 255, 0.12);
 }
 
 
-.modal-info-item span {
-    color: #a99ab5;
+/* =========================================================
+   MODAL SECUNDÁRIO
+========================================================= */
 
-    font-size: 13px;
+.conteudo-secundario {
+    padding: 35px;
+}
+
+.titulo-modal-secundario {
+    font-size: 28px;
+
+    margin-bottom: 7px;
+}
+
+.subtitulo-modal-secundario {
+    color: #888888;
+
+    font-size: 14px;
+
+    margin-bottom: 30px;
 }
 
 
-/* ==========================================
-   SCROLLBAR
-========================================== */
+/* =========================================================
+   MAPA
+========================================================= */
 
-::-webkit-scrollbar {
-    width: 8px;
+.mapa-container {
+    text-align: center;
+}
+
+.mapa-container img {
+    width: 100%;
+
+    max-height: 650px;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    background: #050505;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 
-::-webkit-scrollbar-track {
-    background: #07070a;
+/* =========================================================
+   GINÁSIOS
+========================================================= */
+
+.lista-ginasios {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
 }
 
+.ginasio-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
-::-webkit-scrollbar-thumb {
-    background: #4d1763;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.ginasio-cabecalho {
+    width: 100%;
+
+    padding: 18px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.ginasio-numero {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     border-radius: 10px;
+
+    background: rgba(130, 50, 255, 0.15);
+
+    color: #b77aff;
+
+    font-weight: 700;
+}
+
+.ginasio-nome {
+    flex: 1;
+}
+
+.ginasio-nome strong {
+    display: block;
+
+    margin-bottom: 4px;
+}
+
+.ginasio-nome span {
+    color: #888888;
+
+    font-size: 12px;
+}
+
+.ginasio-seta {
+    color: #888888;
+
+    transition: 0.25s;
+}
+
+.ginasio-card.aberto .ginasio-seta {
+    transform: rotate(180deg);
+}
+
+.ginasio-detalhes {
+    display: none;
+
+    padding: 0 20px 22px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ginasio-card.aberto .ginasio-detalhes {
+    display: block;
+}
+
+.ginasio-bloco {
+    margin-top: 18px;
+}
+
+.ginasio-bloco h4 {
+    font-size: 13px;
+
+    color: #a96cff;
+
+    margin-bottom: 10px;
+}
+
+.ginasio-bloco p {
+    color: #aaa;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.lista-pokemons-ginasio {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(150px, 1fr));
+
+    gap: 10px;
+}
+
+.pokemon-ginasio {
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    font-size: 13px;
+}
+
+.pokemon-ginasio strong {
+    display: block;
+
+    margin-bottom: 4px;
+}
+
+.pokemon-ginasio span {
+    color: #888888;
+
+    font-size: 11px;
 }
 
 
-::-webkit-scrollbar-thumb:hover {
-    background: #8f20bd;
+/* =========================================================
+   TIMES
+========================================================= */
+
+.seletor-iniciais {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+}
+
+.botao-inicial-time {
+    flex: 1;
+
+    min-width: 130px;
+
+    padding: 12px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.botao-inicial-time:hover {
+    color: #fff;
+
+    border-color: rgba(170, 90, 255, 0.4);
+}
+
+.botao-inicial-time.ativo {
+    color: #fff;
+
+    background: rgba(130, 50, 255, 0.16);
+
+    border-color: rgba(170, 90, 255, 0.6);
+}
+
+.times-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.time-card {
+    padding: 20px;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.015)
+        );
+}
+
+.time-estilo {
+    color: #a96cff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+.time-card h4 {
+    font-size: 18px;
+
+    margin-bottom: 15px;
+}
+
+.lista-time {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.pokemon-time {
+    padding: 9px 11px;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    font-size: 13px;
+
+    color: #ddd;
+}
+
+.pokemon-time span {
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+
+    margin-top: 3px;
 }
 
 
-/* ==========================================
+/* =========================================================
    RESPONSIVIDADE
-========================================== */
+========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     .cabecalho-jogos {
-        padding: 20px;
+        padding: 15px 4%;
     }
 
-    .marca-jogos h1 {
-        font-size: 25px;
+    .titulo-jogos h1 {
+        font-size: 18px;
     }
 
-    .marca-jogos p {
-        font-size: 12px;
+    .conteudo-jogos {
+        width: 94%;
+
+        padding: 50px 0;
     }
 
-    .titulo-secao {
-        width: 90%;
-
-        margin-top: 30px;
+    .grid-iniciais {
+        grid-template-columns: 1fr;
     }
 
-    .titulo-secao h2 {
-        font-size: 24px;
+    .inicial-card {
+        display: grid;
+
+        grid-template-columns: 80px 1fr;
+
+        align-items: center;
+
+        text-align: left;
     }
 
-    .filtros-jogos {
-        width: 90%;
+    .inicial-card img {
+        width: 75px;
+        height: 75px;
+
+        grid-row: span 2;
+
+        margin: 0;
     }
 
-    .grid-jogos {
-        width: 90%;
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 14px;
+    .botoes-detalhes {
+        grid-template-columns: 1fr;
     }
 
-    .card-jogo {
-        min-height: 240px;
-
-        padding: 14px;
+    .times-grid {
+        grid-template-columns: 1fr;
     }
 
-    .card-jogo-imagem {
-        height: 115px;
+    .modal-overlay {
+        padding: 12px;
     }
 
-    .card-jogo h3 {
-        font-size: 17px;
-    }
-
-    .card-jogo-descricao {
-        font-size: 12px;
-    }
-
-    .modal-jogo {
-        padding: 25px 20px;
+    .modal-jogo,
+    .conteudo-secundario {
+        padding: 25px 18px;
     }
 
     .modal-capa {
-        height: 170px;
-    }
-
-    .modal-conteudo h2 {
-        font-size: 25px;
-    }
-
-    .modal-info {
-        grid-template-columns: 1fr;
+        max-height: 260px;
     }
 
 }
 
+@media (max-width: 500px) {
 
-@media (max-width: 430px) {
+    .espaco-header {
+        width: 0;
+    }
 
-    .grid-jogos {
-        grid-template-columns: 1fr;
+    .botao-voltar {
+        padding: 8px 11px;
+
+        font-size: 12px;
+    }
+
+    .titulo-jogos span {
+        font-size: 20px;
+    }
+
+    .titulo-jogos h1 {
+        font-size: 16px;
+    }
+
+    .card-imagem {
+        height: 240px;
+    }
+
+    .filtros-jogos {
+        gap: 7px;
+    }
+
+    .filtro-jogo {
+        padding: 8px 10px;
+
+        font-size: 11px;
     }
 
 }
