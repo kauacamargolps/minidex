@@ -4,7 +4,7 @@ const { createClient } = require("@supabase/supabase-js");
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
-    process.env.SUPABASE_SECRET_KEY
+    process.env.SUPABASE_ANON_KEY
 );
 
 // ==========================================
@@ -25,7 +25,7 @@ const supabase = createClient(
 // Gen IX:      1025
 
 const POKEMON_INICIAL = 1;
-const POKEMON_FINAL = 251;
+const POKEMON_FINAL = 386;
 
 
 // ==========================================

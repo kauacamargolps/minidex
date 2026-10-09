@@ -68,9 +68,11 @@ app.get("/pokemon", async (req, res) => {
 });
 
 app.get("/pokemon/:id", async (req, res) => {
+    console.log("ID recebido:", req.params.id);
+    
     const id = Number(req.params.id);
 
-    if (!Number.isInteger(id) || id < 1 || id > 251) {
+    if (!Number.isInteger(id) || id < 1 || id > 1025) {
         return res.status(400).json({
             erro: "ID de Pokémon inválido"
         });
@@ -88,10 +90,16 @@ app.get("/pokemon/:id", async (req, res) => {
             .single();
 
     if (erroPokemon) {
-        return res.status(500).json({
-            erro: erroPokemon.message
+    if (erroPokemon.code === "PGRST116") {
+        return res.status(404).json({
+            erro: "Pokémon não encontrado no banco de dados"
         });
     }
+
+    return res.status(500).json({
+        erro: erroPokemon.message
+    });
+}
 
 
     // ==========================================
@@ -195,9 +203,6 @@ app.get("/pokemon/:id", async (req, res) => {
 console.log("SUPABASE_URL existe?", !!process.env.SUPABASE_URL);
 console.log("SUPABASE_SECRET_KEY existe?", !!process.env.SUPABASE_SECRET_KEY);
 
-app.listen(PORTA, () => {
-    console.log(`Servidor rodando em http://localhost:${PORTA}`);
-});
 app.listen(PORTA, () => {
     console.log(`Servidor rodando em http://localhost:${PORTA}`);
 });
