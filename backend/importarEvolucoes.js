@@ -18,7 +18,7 @@ const supabase = createClient(
 // etc.
 
 const POKEMON_INICIAL = 1;
-const POKEMON_FINAL = 493;
+const POKEMON_FINAL = 649;
 
 const API_BASE = "https://pokeapi.co/api/v2";
 

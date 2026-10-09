@@ -25,7 +25,7 @@ const supabase = createClient(
 // Gen IX:      1025
 
 const POKEMON_INICIAL = 1;
-const POKEMON_FINAL = 493;
+const POKEMON_FINAL = 649;
 
 
 // ==========================================
